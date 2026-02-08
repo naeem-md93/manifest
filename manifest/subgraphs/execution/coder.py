@@ -7,6 +7,10 @@ from langchain_core.prompts import PromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.output_parsers import PydanticOutputParser
 
+from manifest.nodes.database_schema_consultant import database_schema_consultant_node
+from manifest.nodes.api_endpoints_consultant import api_endpoints_consultant_node
+from manifest.nodes.directory_structure_consultant import directory_structure_consultant_node
+
 
 PROMPT = """
 <SYSTEM INSTRUCTIONS>
@@ -101,6 +105,8 @@ CHAIN = PROMPT_TEMPLATE | LANGUAGE_MODEL | PARSER
 
 
 def coder_node(state: dict[str, Any]) -> dict[str, Any]:
+
+
 
     inputs = {}
 

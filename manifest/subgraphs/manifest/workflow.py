@@ -2,16 +2,16 @@
 from langgraph.graph import START
 from langgraph.graph import StateGraph
 
-from manifest.states import ManifestInputState
-from manifest.states import ManifestState
+from manifest.states.manifest import ManifestInputState
+from manifest.states.manifest import ManifestState
 
 from manifest.nodes.router import router_node
 from manifest.nodes.initializer import initializer_node
 
 from manifest.nodes.document_writer import document_writer_node
 
-from manifest.nodes.service_extractor import service_extractor_node
 from manifest.nodes.tech_stack_extractor import tech_stack_extractor_node
+from manifest.nodes.service_extractor import service_extractor_node
 from manifest.nodes.task_decomposer import task_decomposer_node
 from manifest.nodes.step_decomposer import step_decomposer_node
 
@@ -45,41 +45,41 @@ def build_graph():
     graph.add_edge(START, "initializer_node")
     graph.add_conditional_edges("initializer_node", router_node)
 
-    # graph.add_node("document_writer_node", document_writer_node)
-    # graph.add_conditional_edges("document_writer_node", router_node)
-    # graph.add_edge("router_node", "document_writer_node")
+    graph.add_node("document_writer_node", document_writer_node)
+    graph.add_conditional_edges("document_writer_node", router_node)
+    graph.add_edge("router_node", "document_writer_node")
 
-    # graph.add_node("service_extractor_node", service_extractor_node)
-    # graph.add_conditional_edges("service_extractor_node", router_node)
-    # graph.add_edge("router_node", "service_extractor_node")
+    graph.add_node("tech_stack_extractor_node", tech_stack_extractor_node)
+    graph.add_conditional_edges("tech_stack_extractor_node", router_node)
+    graph.add_edge("router_node", "tech_stack_extractor_node")
 
-    # graph.add_node("tech_stack_extractor_node", tech_stack_extractor_node)
-    # graph.add_conditional_edges("tech_stack_extractor_node", router_node)
-    # graph.add_edge("router_node", "tech_stack_extractor_node")
+    graph.add_node("service_extractor_node", service_extractor_node)
+    graph.add_conditional_edges("service_extractor_node", router_node)
+    graph.add_edge("router_node", "service_extractor_node")
 
-    # graph.add_node("task_decomposer_node", task_decomposer_node)
-    # graph.add_conditional_edges("task_decomposer_node", router_node)
-    # graph.add_edge("router_node", "task_decomposer_node")
+    graph.add_node("task_decomposer_node", task_decomposer_node)
+    graph.add_conditional_edges("task_decomposer_node", router_node)
+    graph.add_edge("router_node", "task_decomposer_node")
 
-    # graph.add_node("step_decomposer_node", step_decomposer_node)
-    # graph.add_conditional_edges("step_decomposer_node", router_node)
-    # graph.add_edge("router_node", "step_decomposer_node")
+    graph.add_node("step_decomposer_node", step_decomposer_node)
+    graph.add_conditional_edges("step_decomposer_node", router_node)
+    graph.add_edge("router_node", "step_decomposer_node")
 
-    # graph.add_node("implementation_planner_node", implementation_planner_node)
-    # graph.add_conditional_edges("implementation_planner_node", router_node)
-    # graph.add_edge("router_node", "implementation_planner_node")
+    graph.add_node("implementation_planner_node", implementation_planner_node)
+    graph.add_conditional_edges("implementation_planner_node", router_node)
+    graph.add_edge("router_node", "implementation_planner_node")
 
-    # graph.add_node("database_schema_generator_node", database_schema_generator_node)
-    # graph.add_conditional_edges("database_schema_generator_node", router_node)
-    # graph.add_edge("router_node", "database_schema_generator_node")
+    graph.add_node("database_schema_generator_node", database_schema_generator_node)
+    graph.add_conditional_edges("database_schema_generator_node", router_node)
+    graph.add_edge("router_node", "database_schema_generator_node")
 
-    # graph.add_node("api_endpoints_generator_node", api_endpoints_generator_node)
-    # graph.add_conditional_edges("api_endpoints_generator_node", router_node)
-    # graph.add_edge("router_node", "api_endpoints_generator_node")
+    graph.add_node("api_endpoints_generator_node", api_endpoints_generator_node)
+    graph.add_conditional_edges("api_endpoints_generator_node", router_node)
+    graph.add_edge("router_node", "api_endpoints_generator_node")
 
-    # graph.add_node("directory_structure_generator_node", directory_structure_generator_node)
-    # graph.add_conditional_edges("directory_structure_generator_node", router_node)
-    # graph.add_edge("router_node", "directory_structure_generator_node")
+    graph.add_node("directory_structure_generator_node", directory_structure_generator_node)
+    graph.add_conditional_edges("directory_structure_generator_node", router_node)
+    graph.add_edge("router_node", "directory_structure_generator_node")
 
     graph.add_node("implementor_node", implementor_node)
     graph.add_conditional_edges("implementor_node", router_node)

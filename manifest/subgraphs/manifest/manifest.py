@@ -4,6 +4,11 @@ from typing import Annotated
 import operator
 
 
+class ManifestInputState(TypedDict):
+    project_dir: str
+    project_description: str
+
+
 class ManifestState(TypedDict):
     prev_node: str
     next_node: str
@@ -45,8 +50,3 @@ class ManifestState(TypedDict):
     implementation_messages_file_name: str
 
     request: str
-
-
-class ManifestInputState(TypedDict):
-    project_dir: str
-    project_description: str

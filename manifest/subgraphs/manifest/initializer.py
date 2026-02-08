@@ -59,30 +59,30 @@ def initializer_node(state: dict[str, Any]) -> dict[str, Any]:
 
 
 
-    return {
-        "prev_node": "initializer_node",
-        "next_node": "implementor_node",
-
-        "checkpoints_path": checkpoints_path,
-
-        "messages": open(os.path.join(checkpoints_path, "messages.md"), "r").read().splitlines(),
-        "messages_file_name": "messages.md",
-
-        "tech_doc": open(os.path.join(checkpoints_path, "tech_doc.md"), "r").read(),
-        "tech_doc_file_name": "tech_doc.md",
-
-        "services": json.load(open(os.path.join(checkpoints_path, "steps.json"))),
-        "services_file_name": "services.json",
-
-        "database_schema": open(os.path.join(checkpoints_path, "database_schema.md")).read(),
-
-        "directory_structure": open(os.path.join(checkpoints_path, "directory_structure.md")).read(),
-
-        "api_endpoints": open(os.path.join(checkpoints_path, "api_endpoints.md")).read(),
-
-        "implementation_messages_file_name": "implementation_messages.md",
-    }
-
+    # return {
+    #     "prev_node": "initializer_node",
+    #     "next_node": "implementor_node",
+    #
+    #     "checkpoints_path": checkpoints_path,
+    #
+    #     "messages": open(os.path.join(checkpoints_path, "messages.md"), "r").read().splitlines(),
+    #     "messages_file_name": "messages.md",
+    #
+    #     "tech_doc": open(os.path.join(checkpoints_path, "tech_doc.md"), "r").read(),
+    #     "tech_doc_file_name": "tech_doc.md",
+    #
+    #     "services": json.load(open(os.path.join(checkpoints_path, "steps.json"))),
+    #     "services_file_name": "services.json",
+    #
+    #     "database_schema": open(os.path.join(checkpoints_path, "database_schema.md")).read(),
+    #
+    #     "directory_structure": open(os.path.join(checkpoints_path, "directory_structure.md")).read(),
+    #
+    #     "api_endpoints": open(os.path.join(checkpoints_path, "api_endpoints.md")).read(),
+    #
+    #     "implementation_messages_file_name": "implementation_messages.md",
+    # }
+    #
 
 
     return {

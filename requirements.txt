@@ -2,3 +2,9 @@ langchain
 langchain-openai
 langchain-core
 python-dotenv
+langgraph
+langgraph-cli[inmem]
+pydantic
+tqdm
+python-dotenv
+python-box

@@ -1,26 +1,30 @@
-from manifest.workflow import build_graph
+import os
+
+from manifest.subgraphs.understanding.workflow import build_graph
 
 
-project_dir: str = "./task_01"
+project_dir: str = "./life_manager"
 project_description: str = """
-We want to build a simple web application where users can sign up, log in, and manage a list of personal notes.
-Users should be able to:
-Register with email and password
-Log in and log out
-Create, view, update, and delete their own notes
-The frontend should be a single-page application using React.
-The backend should expose a REST API using Python & FastAPI.
-Data should be persisted in a SQLite database.
-Authentication must be secure, and users must not access other users’ notes.
-The system should be easy to extend later.
+I want to build a web-based life and goal management application that uses AI agents and LLMs to help users\
+ clarify their goals, turn them into actionable plans, and keep those plans up to date over time.
+The system will guide users through goal definition, generate a planning schedule,\
+ and run regular check-ins (for example, nightly) to collect feedback and automatically adjust the\
+ schedule when needed. All planned tasks and events will be synced to an external calendar,\
+ such as Google Calendar or a CalDAV-based calendar compatible with GNOME Calendar.
+The application will include simple email-and-password authentication,\
+ a React + JavaScript frontend, and a Python backend built with FastAPI.\
+ Data will be stored in SQLite for the initial version.
 """
 
 
-GRAPH = build_graph()
+UNDERSTANDING_GRAPH = build_graph()
 
 
 if __name__ == "__main__":
-    GRAPH.invoke({
+    os.makedirs(project_dir, exist_ok=True)
+    os.makedirs(f"{project_dir}/.manifest_cache/", exist_ok=True)
+    UNDERSTANDING_GRAPH.invoke({
         "project_dir": project_dir,
-        "project_description": project_description,
+        "project_desc": project_description,
+        "checkpoints_path": f"{project_dir}/.manifest_cache/"
     })

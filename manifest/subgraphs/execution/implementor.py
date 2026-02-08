@@ -40,7 +40,7 @@ def implementor_node(state: dict[str, Any]) -> dict[str, Any]:
 
     return {
         "prev_node": state["next_node"],
-        "next_node": "database_schema_consultant_node",
+        "next_node": "coder_node",
 
         "messages": ["Service, Tech Stack, Task, and Step selected successfully!"],
         "request": request,

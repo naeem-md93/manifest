@@ -1,7 +1,7 @@
 {
   "dependencies": ["./manifest"],
   "graphs": {
-    "manifest_graph": "./main.py:GRAPH"
+    "manifest_graph": "./main.py:UNDERSTANDING_GRAPH"
   },
   "env": "./.env"
 }
