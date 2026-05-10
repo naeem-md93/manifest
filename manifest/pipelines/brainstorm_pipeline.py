@@ -6,8 +6,8 @@ from langchain_core.messages import (
     AnyMessage
 )
 
+from manifest.entities import Agents
 from manifest.schemas import ManifestState
-from manifest.entities import Agents, Pipelines
 from manifest.utils import llm_utils, py_utils, log_utils
 from manifest.tools.web_search_tool import web_search_tool
 from manifest.tools.write_document_tool import write_document_tool
@@ -49,9 +49,12 @@ class BrainstormPipeline:
 
     def invoke(self, user_message: str, state: ManifestState) -> str:
 
+        if not state.messages.get(Agents.PLAN):
+            state.messages[Agents.BRAINSTORM] = []
+
         messages: list[AnyMessage] = [
            SystemMessage(name=Agents.BRAINSTORM, content=SYSTEM_PROMPT),
-        ] + state.messages.get(Agents.BRAINSTORM, []) + [
+        ] + state.messages[Agents.BRAINSTORM] + [
             HumanMessage(user_message),
         ]
 
@@ -66,9 +69,6 @@ class BrainstormPipeline:
 
             py_utils.append_text_file(state.history_path, log_utils.reformat_message(st["messages"][-1]))
             ai_response = st["messages"][-1].content
-
-        if not state.messages.get(Agents.BRAINSTORM):
-            state.messages[Agents.BRAINSTORM] = []
 
         state.messages[Agents.BRAINSTORM].append(HumanMessage(user_message))
         state.messages[Agents.BRAINSTORM].append(AIMessage(name=Agents.BRAINSTORM, content=ai_response))

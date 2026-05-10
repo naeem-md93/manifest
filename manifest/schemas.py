@@ -1,12 +1,13 @@
-from pathlib import Path
 from typing import Any
+from pathlib import Path
 from pydantic import BaseModel
+from langchain_core.messages import AnyMessage
 
 
 class ManifestState(BaseModel):
     is_finished: bool = False
     conversations: dict[str, list[dict[str, str]]] = {}
-    messages: dict[str, list[dict[str, str]]] = {}
+    messages: dict[str, list[AnyMessage]] = {}
     documents: dict[str, list[str]] = {}
 
     cache_dir: Path = Path("./tmp/")
