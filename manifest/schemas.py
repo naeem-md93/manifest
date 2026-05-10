@@ -9,5 +9,5 @@ class ManifestState(BaseModel):
     messages: dict[str, list[dict[str, str]]] = {}
     documents: dict[str, list[str]] = {}
 
-    cache_dir: Path = Path("./.cache/")
-    history_path: Path = Path("./.cache/history.md")
+    cache_dir: Path = Path("./tmp/")
+    history_path: Path = Path("./tmp/history.md")
